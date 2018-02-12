@@ -1,2 +1,1 @@
-Flask==0.12.1
-pyodbc-4.0.22-cp27-none-win32.whl
+requests
