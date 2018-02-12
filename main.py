@@ -1,4 +1,5 @@
 from flask import Flask
+import pyodbc
 app = Flask(__name__)
 
 @app.route('/')
