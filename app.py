@@ -1,18 +1,23 @@
 from flask import Flask
 import pymysql
-from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/')
-def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
-
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
-
-    <img src="http://loremflickr.com/600/400">
-    """.format(time=the_time)
+def hello_world():
+  connection = pymysql.connect(host='35.224.87.205',
+                             user='courtrightj7',
+                             password='Omerta77!',
+                             db='BitLynx',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
+  cursor = connection.cursor()
+  sql = "SELECT `id`, `password` FROM `testtable` WHERE `email`=%s"
+  cursor.execute(sql, ('webmaster@python.org',))
+  result = cursor.fetchone()
+  connection.close()
+  return result
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+  app.run()
+
+
