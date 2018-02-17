@@ -7,6 +7,7 @@ def hello_world():
   connection = pymysql.connect(host='35.224.87.205',
                              user='courtrightj7',
                              password='Omerta77!',
+                             connect_timeout='100000',
                              db='BitLynx',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
