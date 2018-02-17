@@ -1,11 +1,36 @@
-# Python Flask app on Azure App Service Web
+# proximo-stacklet
 
-This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service Web.
+Send outbound traffic from a process through a [Proximo proxy](https://addons.heroku.com/proximo).
 
-This repository can directly be deployed to Azure App Service.
+## Installation
 
-For more information, please see the [Python on App Service Quickstart docs](https://docs.microsoft.com/en-us/azure/app-service-web/app-service-web-get-started-python).
+Install the stacklet into your app:
 
-# Contributing
+    cd ~/myapp
+    curl http://downloads.proximo.io/proximo-stacklet.tgz | tar xz
+    git add bin/proximo vendor/dante
+    git commit -m "add proximo stacklet"
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## Usage
+
+Modify your Procfile to prepend `bin/proximo` to any command:
+
+    web: bin/proximo bundle exec thin start
+
+By default, the `bin/proximo` wrapper will cause all outbound traffic
+from the wrapped process to be sent across the [Proximo proxy](https://addons.heroku.com/proximo) and appear
+to come from your static IP.
+
+If you'd like to send a subset of traffic over the proxy, limit
+with `PROXIMO_MASK`
+
+    $ heroku config:add PROXIMO_MASK="172.18.32.0/24"
+
+This will cause only connections within 172.18.32.0-172.18.32.255 to be
+made through the [Proximo proxy](https://addons.heroku.com/proximo).
+
+## License
+
+`proximo-stacklet` is a fancy wrapper for [Dante](http://www.inet.no/dante/) which is licensed with a BSD/CMU-type [license](ftp://ftp.inet.no/pub/socks/LICENSE).
+
+The rest is licensed MIT.
