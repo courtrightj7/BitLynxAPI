@@ -1,1 +1,1 @@
-web: bin/proximo bundle exec thin start
+web: gunicorn app:app --log-file=-
