@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from json import dumps
 from datetime import datetime
 
-engine = create_engine('mysql+mysqldb://courtrightj7:Omerta77!@35.224.87.205/BitLynx')
+#engine = create_engine('mysql+mysqldb://courtrightj7:Omerta77!@35.224.87.205/BitLynx')
 app = Flask(__name__)
 api = Api(app)
 
