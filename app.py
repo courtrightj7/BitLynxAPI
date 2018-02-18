@@ -3,8 +3,8 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 from datetime import datetime
-e = create_engine('mysql+mysqldb://root@/<dbnam>?unix_socket=/cloudsql/<projectid>:<instancename>')
 
+engine = create_engine('mysql+mysqldb://courtrightj7:Omerta77!@35.224.87.205/BitLynx')
 app = Flask(__name__)
 api = Api(app)
 
