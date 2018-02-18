@@ -1,2 +1,5 @@
 Flask
+flask_restful
+sqlalchemy
+json
 gunicorn
