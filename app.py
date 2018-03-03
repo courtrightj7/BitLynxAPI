@@ -8,21 +8,15 @@ import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-try:
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-except:
-    pass
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
  
 app = Flask(__name__)
 api = Api(app)
 
-@app.route('/', methods = ['GET'])
+@app.route('/', methods = ['POST'])
 def Test():
-    if request.method == 'GET':
-        if conn:
-            message = 'Successful'
-        else:
-            message = 'Unsuccessful'
+    if request.method == 'POST':
+        message = str(DATABASE_URL)
         returrn message 
         
 if __name__ == '__main__':
