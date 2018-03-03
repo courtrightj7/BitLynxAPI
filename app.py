@@ -46,7 +46,17 @@ def RegisterAccount():
         query = conn.execute(mySQL)
         x = query.cursor.fetchall()
         conn.close()
-        return str(x)
+        if len(x) > 0:
+            return str({'Message':'User Already Exists'})
+         else:
+            conn = e.connect()
+            mySQL = "Insert into LoginTable Values("
+            mySQL = mySQL + "'"+str(username)+"','"+str(password)+"','"
+            mySQL = mySQL + str(company) +"')"
+            query = conn.execute(mySQL)
+            #conn.commit()
+            conn.close()
+            return str({'Message':'User Added'})
         
        
 if __name__ == '__main__':
