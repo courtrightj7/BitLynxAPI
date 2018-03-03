@@ -39,8 +39,13 @@ def RegisterAccount():
         username = str(data['username'])
         password = str(data['password'])
         company = str(data['company'])
-        return str(company)
-       
+        conn = e.connect()
+        mySQL = "Select * from LoginTable where "
+        mySQL += "UserName = '"+str(username) + "'"
+        query = conn.execute(mySQL)
+        x = query.cursor.fetchall()
+        conn.close()
+        return str(x)
 if __name__ == '__main__':
      app.run()
 
