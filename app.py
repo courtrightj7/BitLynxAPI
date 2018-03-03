@@ -22,14 +22,14 @@ def Login():
         
         query = conn.execute(SQL)
         x = query.cursor.fetchall()
-        print str(x)
-        try:
-            x = x[0][0]
-            return {'CustomerID':str(x)}
-        except:
-            return {'message':'Wrong User password'}
         conn.close()
-        
+        #try:
+        #    x = x[0][0]
+        #    return {'CustomerID':str(x)}
+        #except:
+        #    return {'message':'Wrong User password'}
+        conn.close()
+        return x
 
 if __name__ == '__main__':
      app.run()
