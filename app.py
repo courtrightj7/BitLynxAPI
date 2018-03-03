@@ -18,22 +18,16 @@ def Login():
         
         conn = e.connect()
         # Perform query and return JSON data
-        SQL = "select CustomerID from LoginTable where UserName = '" + username + "'"
+        SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
+        
         query = conn.execute(SQL)
         x = query.cursor.fetchall()
         print str(x)
         try:
             x = x[0][0]
-            SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
-            query = conn.execute(SQL)
-            x = query.cursor.fetchall()
-            try:
-                x = x[0][0]
-                return {'CustomerID':str(x)}
-            except:
-                return {'message':'Incorrect password'} 
+            return {'CustomerID':str(x)}
         except:
-            return {'message':'User does not exist'}
+            return {'message':'Wrong User password'}
         conn.close()
         
 
