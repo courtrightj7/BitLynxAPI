@@ -13,18 +13,19 @@ def Login():
  
     if request.method == 'POST':
         data = request.form # a multidict containing POST data
-        username = data['username']
-        password = data['password']
+        return str(data)
+        #username = data['username']
+        #password = data['password']
         conn = e.connect()
         # Perform query and return JSON data
-        SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
-        query = conn.execute(SQL)
-        x = query.cursor.fetchall()
-        conn.close()
-        if len(x) > 0:
-            return {'CustomerID': [i[0] for i in x]}
-        else:
-            return {'message': 'User does not exist'}
+        #SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
+        #query = conn.execute(SQL)
+        #x = query.cursor.fetchall()
+        #conn.close()
+        #if len(x) > 0:
+        #    return {'CustomerID': [i[0] for i in x]}
+        #else:
+        #    return {'message': 'User does not exist'}
 
 if __name__ == '__main__':
      app.run()
