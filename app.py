@@ -52,7 +52,7 @@ def RegisterAccount():
             mySQL = "Insert into LoginTable (UserName,Password,Company) values('"+ str(username) 
             mySQL += "','" + str(password) + "','"+str(company)+"')"
             query = conn.execute(mySQL)
-            conn.commit()
+            #conn.commit()
             conn.close()
             message =  str({'Message':mySQL})
         return message
