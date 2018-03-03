@@ -21,6 +21,7 @@ def Login():
         SQL = "select CustomerID from LoginTable where UserName = '" + username + "'"
         query = conn.execute(SQL)
         x = query.cursor.fetchall()
+        print str(x)
         try:
             x = x[0][0]
             SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
