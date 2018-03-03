@@ -29,7 +29,8 @@ def Login():
         #except:
         #    return {'message':'Wrong User password'}
         conn.close()
-        return str(x)
+ 
+        return len(x)
 
 if __name__ == '__main__':
      app.run()
