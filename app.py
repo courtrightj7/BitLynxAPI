@@ -22,6 +22,7 @@ def Login():
         
         query = conn.execute(SQL)
         x = query.cursor.fetchall()
+        x = x[0][0]
         conn.close()
         return str(x)
         #if len(x) > 0:
