@@ -13,10 +13,12 @@ def Login():
  
     if request.method == 'POST':
         data = request.form # a multidict containing POST data
-        return str(data)
+        username = data['username']
+        password = data['password']
+        return str(username) + str(password)
         #username = data['username']
         #password = data['password']
-        conn = e.connect()
+        #conn = e.connect()
         # Perform query and return JSON data
         #SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
         #query = conn.execute(SQL)
