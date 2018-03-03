@@ -31,25 +31,7 @@ def Login():
         else:
             return str({'Message':'User Name or Password Incorrect'})
 #########################################################################################################################################
-@app.route('/Registration', methods = ['POST'])
-def RegisterAccount():
- 
-    if request.method == 'POST':
-        data = request.form # a multidict containing POST data
-        username = str(data['username'])
-        password = str(data['password'])
-        company = str(data['company'])
-       
-        conn = e.connect()
-        mySQL = "Select * from LoginTable where "
-        mySQL += "UserName = '"+str(username) + "'"
-        query = conn.execute(mySQL)
-        x = query.cursor.fetchall()
-        conn.close()
-        if len(x) > 0:
-            return str({'Message':'User Already Exists'})
-         else:
-            return str({'Message':'User DNE'})
+
         
        
 if __name__ == '__main__':
