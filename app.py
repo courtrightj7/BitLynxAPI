@@ -23,7 +23,7 @@ def Login():
         query = conn.execute(SQL)
         x = query.cursor.fetchall()
         conn.close()
-        return str(type(x))
+        return str(x)
         #if len(x) > 0:
         #    return {'CustomerID': [i[0] for i in x]}
         #else:
