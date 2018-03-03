@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from json import dumps
 from datetime import datetime
 
-e = create_engine('sqlite:///test.db')
+e = create_engine('sqlite:///BitLynx.db')
 app = Flask(__name__)
 api = Api(app)
 
