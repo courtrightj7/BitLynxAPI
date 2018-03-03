@@ -45,12 +45,9 @@ def RegisterAccount():
         query = conn.execute(mySQL)
         x = query.cursor.fetchall()
         conn.close()
+        return str({'Message':'User Already Exists'})
         
         
-        if len(x) > 0:
-            return str({'Message':'User Already Exists'})
-         else:
-            return str({'Message':'User DNE'})
 if __name__ == '__main__':
      app.run()
 
