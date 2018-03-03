@@ -21,13 +21,7 @@ def Login():
         SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
         
         query = conn.execute(SQL)
-        x = query.cursor.fetchall()
-        conn.close()
-        #try:
-        #    x = x[0][0]
-        #    return {'CustomerID':str(x)}
-        #except:
-        #    return {'message':'Wrong User password'}
+        x = query.cursor.fetchall()  
         conn.close()
  
         if len(x) > 0:
@@ -36,7 +30,31 @@ def Login():
             return str({'CustomerID': x})
         else:
             return str({'Message':'User Name or Password Incorrect'})
-
+#########################################################################################################################################
+@app.route('/Registration', methods = ['POST'])
+def RegisterAccount():
+ 
+    if request.method == 'POST':
+        data = request.form # a multidict containing POST data
+        username = str(data['username'])
+        password = str(data['password'])
+        company = str(data['company'])
+       
+        conn = e.connect()
+        mySQL = "Select * from LoginTable where "
+        mySQL += "UserName = '"+str(username) + "'"
+        query = conn.execute(mySQL)
+        x = query.cursor.fetchall()
+        if len(x) > 0:
+            return str({'Message':'User Already Exists'})
+         else:
+            mySQL = "Insert into LoginTable Values("
+            mySQL = mySQL + "'"+str(username)+"','"+str(password)+"','"
+            mySQL = mySQL + str(company) +"')"
+            query = conn.execute(mySQL)
+            conn.commit()
+            return str({'Message':'User Added'})
+       
 if __name__ == '__main__':
      app.run()
 
