@@ -31,8 +31,15 @@ def Login():
         else:
             return str({'Message':'User Name or Password Incorrect'})
 #########################################################################################################################################
-
-        
+@app.route('/Registration', methods = ['POST'])
+def RegisterAccount():
+ 
+    if request.method == 'POST':
+        data = request.form # a multidict containing POST data
+        username = str(data['username'])
+        password = str(data['password'])
+        company = str(data['company'])
+        return str(company)
        
 if __name__ == '__main__':
      app.run()
