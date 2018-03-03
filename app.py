@@ -49,9 +49,11 @@ def RegisterAccount():
             message = str({'Message':'User Already Exists'})
         else:
             conn = e.connect()
-            mySQL = "Insert into LoginTable values '"+ str(username) + "','" + str(password) + "','"+str(company)+"'"
+            mySQL = "Insert into LoginTable values('"+ str(username) + "','" + str(password) + "','"+str(company)+"')"
+            query = conn.execute(mySQL)
+            conn.commit()
             conn.close()
-            message =  str({'SQL':mySQL})
+            message =  str({'Message':mySQL})
         return message
         
 if __name__ == '__main__':
