@@ -30,7 +30,12 @@ def Login():
         #    return {'message':'Wrong User password'}
         conn.close()
  
-        return len(x)
+        if len(x) > 0:
+            x = x[0][0]
+            x = str(x)
+            return str({'CustomerID': x})
+        else:
+            return str({'Message':'User Name or Password Incorrect'})
 
 if __name__ == '__main__':
      app.run()
