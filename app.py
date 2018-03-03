@@ -49,14 +49,7 @@ def RegisterAccount():
         if len(x) > 0:
             return str({'Message':'User Already Exists'})
          else:
-            conn = e.connect()
-            mySQL = "Insert into LoginTable Values("
-            mySQL = mySQL + "'"+str(username)+"','"+str(password)+"','"
-            mySQL = mySQL + str(company) +"')"
-            query = conn.execute(mySQL)
-            #conn.commit()
-            conn.close()
-            return str({'Message':'User Added'})
+            return str({'Message':'User DNE'})
         
        
 if __name__ == '__main__':
