@@ -4,20 +4,26 @@ from sqlalchemy import create_engine
 from json import dumps
 from datetime import datetime
 
-#engine = create_engine('mysql+mysqldb://courtrightj7:Omerta77!@35.224.87.205/BitLynx')
+e = create_engine('sqlite:///test.db')
 app = Flask(__name__)
 api = Api(app)
 
 
-@app.route('/')
-def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+class test(Resource):
+    def get(self):
+        # Connect to databse
+        conn = e.connect()
+        # Perform query and return JSON data
+        query = conn.execute("select Name from test")
+        x = query.cursor.fetchall()
+        conn.close()
+        return {'name': [i[0] for i in x]}
 
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
-    <img src="http://loremflickr.com/600/400" />
-    """.format(time=the_time)
+
+api.add_resource(test, '/test')
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+     app.run()
+
+
+
