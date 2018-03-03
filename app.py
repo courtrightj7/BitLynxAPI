@@ -8,19 +8,23 @@ e = create_engine('sqlite:///test.db')
 app = Flask(__name__)
 api = Api(app)
 
-
-class test(Resource):
-    def get(self):
-        # Connect to databse
+@app.route('/Login', methods = ['POST'])
+def Login():
+ 
+    if request.method == 'POST':
+        data = request.form # a multidict containing POST data
+        username = data['username']
+        password = data['password']
         conn = e.connect()
         # Perform query and return JSON data
-        query = conn.execute("select Name from test")
+        SQL = "select CustomerID from LoginTable where UserName = '" + username + "' and Password = '" + password +"'"
+        query = conn.execute(SQL)
         x = query.cursor.fetchall()
         conn.close()
-        return {'name': [i[0] for i in x]}
-
-
-api.add_resource(test, '/test')
+        if len(x) > 0:
+            return {'CustomerID': [i[0] for i in x]}
+        else:
+            return {'message': 'User does not exist'}
 
 if __name__ == '__main__':
      app.run()
