@@ -1,10 +1,9 @@
 import os
 from flask import Flask, request
 from flask_restful import Resource, Api
-from sqlalchemy import create_engine
 from json import dumps
 from datetime import datetime
-import psycopg2
+import pymysql
 
 DATABASE_URL = os.environ['DATABASE_URL']
 #DATABASE_URL = 'TEST'
@@ -12,6 +11,12 @@ DATABASE_URL = os.environ['DATABASE_URL']
  
 app = Flask(__name__)
 api = Api(app)
+connection = pymysql.connect(host='us-cdbr-iron-east-05.cleardb.net',
+                             user='b38e4d31767903',
+                             password='c17681',
+                             db='heroku_4c8e33f241f2945',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
 @app.route('/test', methods = ['POST'])
 def Test():
