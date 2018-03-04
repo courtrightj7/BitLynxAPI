@@ -11,12 +11,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
  
 app = Flask(__name__)
 api = Api(app)
-connection = pymysql.connect(host='us-cdbr-iron-east-05.cleardb.net',
-                             user='b38e4d31767903',
-                             password='c17681',
-                             db='heroku_4c8e33f241f2945',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+
 @app.route('/test', methods = ['GET'])
 def Test():
     if request.method == 'GET':
