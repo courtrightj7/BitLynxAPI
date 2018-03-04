@@ -18,9 +18,9 @@ connection = pymysql.connect(host='us-cdbr-iron-east-05.cleardb.net',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 
-@app.route('/test', methods = ['POST'])
+@app.route('/test', methods = ['GET'])
 def Test():
-    if request.method == 'POST':
+    if request.method == 'GET':
         message = str(DATABASE_URL)
         returrn message 
         
