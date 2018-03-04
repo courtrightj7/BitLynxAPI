@@ -17,12 +17,11 @@ connection = pymysql.connect(host='us-cdbr-iron-east-05.cleardb.net',
                              db='heroku_4c8e33f241f2945',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-
 @app.route('/test', methods = ['GET'])
 def Test():
     if request.method == 'GET':
         message = str(DATABASE_URL)
-        returrn message 
+        return message 
         
 if __name__ == '__main__':
      app.run()
