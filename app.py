@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from json import dumps
 from datetime import datetime
 import pymysql
+from sqlalchemy import create_engine
 
 DATABASE_URL = os.environ['DATABASE_URL']
 #DATABASE_URL = 'TEST'
@@ -11,6 +12,7 @@ DATABASE_URL = os.environ['DATABASE_URL']
  
 app = Flask(__name__)
 api = Api(app)
+e = create_engine('mysql://b38e4d31767903:c17681@us-cdbr-iron-east-05.cleardb.net/heroku_4c8e33f241f2945')
 
 @app.route('/test', methods = ['GET'])
 def Test():
